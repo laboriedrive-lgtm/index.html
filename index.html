@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quy Chuẩn Truyền Thông Thương Hiệu — Khối Thương Mại</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    :root {
+      --shop: #15397f; --shop-70: #4d6a9f; --shop-50: #8a9dbf; --shop-30: #c7d1df; --shop-dark: #0d2456; --shop-bg: #edf1f8;
+      --glz: #A93226; --glz-dark: #7B241C; --glz-light: #fdecea; --glz-gold: #F1C40F;
+      --dr: #15397f; --dr-dark: #0d2456; --dr-light: #edf1f8;
+      --bg: #f5f6f8; --surface: #fff; --ink: #1a1a2e; --muted: #6c757d; --line: #e2e5ea;
+      --ok: #198754; --no: #dc3545; --warn: #e6850a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+    a{color:inherit;text-decoration:none}
+    .shell{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:linear-gradient(180deg,#0a1a3f 0%,var(--shop) 60%,var(--shop-70) 100%);color:#fff;padding:28px 20px;display:flex;flex-direction:column}
+    .sidebar-logo{width:150px;margin-bottom:6px;height:auto}
+    .sidebar .ver{font-size:11px;opacity:.4;margin-bottom:20px}
+    .sidebar .doc-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.45;margin-bottom:14px}
+    .ng{margin-bottom:14px}
+    .ng-t{font-size:9px;letter-spacing:.15em;text-transform:uppercase;opacity:.3;margin-bottom:5px;padding-left:10px}
+    .nav a{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:7px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);transition:.2s;margin-bottom:1px}
+    .nav a:hover{background:rgba(255,255,255,.1);color:#fff;transform:translateX(2px)}
+    .td{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .bl{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:11px}
+    .bl-r{display:flex;align-items:center;gap:7px;opacity:.55;margin-bottom:6px}
+    .bl-r .d{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+    /* CONTENT */
+    .content{padding:32px 40px;overflow-y:auto}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--shop),var(--shop-dark));color:#fff;border-radius:18px;padding:40px 44px;margin-bottom:32px;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;right:-50px;top:-50px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.04)}
+    .hero-logo{height:44px;margin-bottom:14px}
+    .hero h2{font-size:clamp(22px,3.2vw,34px);font-weight:800;line-height:1.2;margin-bottom:10px;max-width:600px}
+    .hero p{font-size:14px;line-height:1.8;opacity:.8;max-width:600px}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+    .pill{padding:6px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:11px}
+
+    /* SECTION */
+    .section{margin-bottom:36px;scroll-margin-top:20px}
+    .sh{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+    .sn{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+    .section h3{font-size:20px;font-weight:700}
+    .sd{font-size:13.5px;color:var(--muted);margin-bottom:18px;max-width:750px;line-height:1.8}
+
+    /* BRAND DIVIDER */
+    .bd{padding:28px 36px;border-radius:16px;margin-bottom:24px;color:#fff;position:relative;overflow:hidden}
+    .bd-logo{height:44px;max-width:220px;width:auto;object-fit:contain;margin-bottom:10px;display:block}
+    .bd p{font-size:14px;opacity:.85;max-width:560px;line-height:1.7}
+    .bd .wm{position:absolute;right:36px;top:50%;transform:translateY(-50%);font-size:64px;font-weight:900;opacity:.06;letter-spacing:-3px}
+
+    /* CARDS */
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px}
+    .ct{font-size:14px;font-weight:700;margin-bottom:8px}
+    .card p,.card li{font-size:13px;line-height:1.8;color:#444}
+    .card ul{padding-left:15px}
+    .card ul li{margin-bottom:3px}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+    /* SWATCHES */
+    .sr{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px}
+    .sw{width:88px;border-radius:10px;overflow:hidden;border:1px solid var(--line);font-size:10px;text-align:center}
+    .sw-c{height:50px}
+    .sw-l{padding:6px 3px 1px;font-weight:600;background:#fff;font-size:10px}
+    .sw-h{padding:0 3px 6px;font-family:monospace;color:var(--muted);background:#fff;font-size:9px}
+
+    /* LOGO SHOWCASE */
+    .ls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+    .lb{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+    .lb .lp{height:100px;display:flex;align-items:center;justify-content:center;padding:18px}
+    .lb .lp img{max-height:50px;max-width:75%;object-fit:contain}
+    .lb .lc{padding:8px 12px;font-size:11px;color:var(--muted);background:#fff;text-align:center;border-top:1px solid var(--line)}
+
+    /* FONT */
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+    .fc{padding:18px;border-radius:10px;border:1px solid var(--line);background:#fafbfc}
+    .fc .fl{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
+    .fc .fs{font-size:22px;font-weight:700;margin-bottom:5px}
+    .fc .fd{font-size:12px;color:var(--muted);line-height:1.6}
+    .rb{display:flex;height:26px;border-radius:7px;overflow:hidden;margin:8px 0}
+    .rb .sg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+
+    /* EXAMPLES */
+    .eg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+    .eb{border-radius:12px;overflow:hidden;border:2px solid}
+    .eb.ok{border-color:var(--ok)}.eb.no{border-color:var(--no)}
+    .ev{height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;color:#fff;text-align:center;padding:16px;gap:5px;position:relative}
+    .et{position:absolute;top:7px;left:7px;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;color:#fff}
+    .eb.ok .et{background:var(--ok)}.eb.no .et{background:var(--no)}
+    .ec{padding:10px 12px;font-size:12px;line-height:1.6;background:#fff}
+    .eb.ok .ec{color:#0f5132}.eb.no .ec{color:#842029}
+
+    /* IMAGE EXAMPLE */
+    .ie-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+    .ie{border-radius:12px;overflow:hidden;border:2px solid}
+    .ie.ok{border-color:var(--ok)}.ie.no{border-color:var(--no)}
+    .ie .is{height:200px;background:#f0f2f5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .ie .is img{width:100%;height:100%;object-fit:cover}
+    /* SQUARE IMAGE FRAME */
+    .ie-sq .is{aspect-ratio:1/1;height:auto;background:#fafafa}
+    .ie-sq .is img{object-fit:contain;width:100%;height:100%;padding:8px}
+    .ie .is .st{position:absolute;top:7px;left:7px;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;color:#fff;z-index:1}
+    .ie.ok .st{background:var(--ok)}.ie.no .st{background:var(--no)}
+    .ie .id{padding:10px 12px;font-size:12px;line-height:1.6;background:#fff}
+
+    /* VOICE */
+    .vr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+    .vb{padding:12px 14px;border-radius:9px;font-size:13px;line-height:1.7;font-style:italic}
+    .vb.g{background:#d4edda;border:1px solid #a3cfbb}
+    .vb.b{background:#f8d7da;border:1px solid #f1aeb5}
+    .vb .vt{font-style:normal;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:block}
+    .vb.g .vt{color:var(--ok)}.vb.b .vt{color:var(--no)}
+
+    /* CRITERIA */
+    .cg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+    .cc{padding:16px;border-radius:11px;border:1px solid var(--line);background:#fff}
+    .cc h5{font-size:13px;font-weight:700;margin-bottom:7px}
+    .cc ul{padding-left:15px;font-size:12.5px;color:#555}
+    .cc ul li{margin-bottom:3px;line-height:1.7}
+
+    /* SPEC */
+    .sb{background:#f8f9fa;border:1px solid var(--line);border-radius:9px;padding:12px 16px;margin-bottom:8px}
+    .sb .sl{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600;margin-bottom:3px}
+    .sb .sv{font-size:13px;font-weight:600}
+
+    /* ALERTS */
+    .al{padding:12px 16px;border-radius:9px;font-size:13px;line-height:1.7;margin:12px 0;border-left:4px solid}
+    .al-i{background:#e8edf6;border-color:var(--shop);color:var(--shop-dark)}
+    .al-w{background:#fff3cd;border-color:var(--warn);color:#664d03}
+    .al-s{background:#d1e7dd;border-color:var(--ok);color:#0f5132}
+    .al-d{background:#f8d7da;border-color:var(--no);color:#842029}
+
+    /* SUB */
+    .sub{margin-bottom:20px}
+    .sub h4{font-size:15px;font-weight:700;margin-bottom:4px}
+    .sub>p{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.7}
+
+    /* PRINCIPLE */
+    .pc{background:#fff;border:1px solid var(--line);border-radius:11px;padding:16px;border-top:4px solid}
+    .pc .pn{font-size:22px;font-weight:800;opacity:.1;margin-bottom:3px}
+    .pc h4{font-size:13px;font-weight:700;margin-bottom:5px}
+    .pc p{font-size:12px;color:var(--muted);line-height:1.7}
+
+    /* TABLE */
+    .dt{width:100%;border-collapse:collapse;font-size:13px}
+    .dt th{background:#f8f9fa;padding:10px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);border-bottom:2px solid var(--line);font-weight:600}
+    .dt td{padding:10px 12px;border-bottom:1px solid #f0f0f0;vertical-align:top;line-height:1.7}
+    .dt tr:last-child td{border-bottom:none}
+
+    /* NN TABLE */
+    .nn th{background:linear-gradient(135deg,#1a1a2e,#2d1b3d);color:#fff;padding:12px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+    .nn td{padding:12px 14px;border-bottom:1px solid #f0f0f0;vertical-align:top;line-height:1.7}
+    .nn tr:last-child td{border-bottom:none}
+    .nn-n{width:26px;height:26px;border-radius:50%;background:var(--no);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+    .nn-k{display:inline-block;padding:2px 7px;border-radius:3px;background:#f8d7da;color:var(--no);font-size:10px;font-weight:600;margin:1px}
+
+    /* SCORING */
+    .scg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+    .sc{padding:18px;border-radius:13px;text-align:center;border:2px solid;position:relative;overflow:hidden}
+    .sc .sr2{font-size:32px;font-weight:900;margin-bottom:3px}
+    .sc .sl2{font-size:12px;font-weight:700;margin-bottom:5px}
+    .sc .sd2{font-size:11px;color:var(--muted);line-height:1.6}
+    .sc.gr{border-color:var(--ok);background:#f0faf4}.sc.gr .sr2{color:var(--ok)}
+    .sc.ye{border-color:var(--warn);background:#fffcf0}.sc.ye .sr2{color:var(--warn)}
+    .sc.re{border-color:var(--no);background:#fef2f2}.sc.re .sr2{color:var(--no)}
+
+    /* ACCENTS */
+    .stripe{height:4px;border-radius:2px;margin:20px 0;background:linear-gradient(90deg,var(--shop),var(--shop-70),var(--glz),var(--glz-gold),var(--dr))}
+    .mini-hero{padding:16px 22px;border-radius:13px;margin-bottom:18px;background:linear-gradient(135deg,#1a1a2e,#2d1b3d);color:#fff;position:relative;overflow:hidden}
+    .mini-hero h3{color:#fff;font-size:18px}.mini-hero p{font-size:12px;opacity:.7;margin-top:3px}
+
+    /* FOOTER */
+    .footer{margin-top:40px;padding:28px 32px;background:linear-gradient(135deg,#0a1a3f,var(--shop));border-radius:16px;color:#fff}
+    .footer .fl2{height:28px;margin-bottom:10px}
+    .footer p{font-size:12px;opacity:.6;line-height:1.8;max-width:560px}
+    .fb{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .fbc{padding:12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+    .fbc img{height:26px;max-width:140px;width:auto;object-fit:contain;margin-bottom:8px;display:block}
+    .fbc p{font-size:10px;opacity:.5}
+
+    /* METALLIC LOGO */
+    .logo-m{font-size:24px;font-weight:900;letter-spacing:1px;background:linear-gradient(180deg,#e8e8e8 0%,#b0b0b0 25%,#f5f5f5 50%,#a0a0a0 75%,#d0d0d0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3));display:inline-block}
+
+    .tag{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600}
+
+    @media(max-width:1100px){.shell{grid-template-columns:1fr}.sidebar{position:static;height:auto;padding:20px}.content{padding:20px}.g3,.g4,.eg,.vr,.cg,.ls,.fr,.ie-grid,.scg{grid-template-columns:1fr}}
+    @media(max-width:768px){.g2,.fb{grid-template-columns:1fr}.hero{padding:22px}.content{padding:14px}.sw{width:70px}}
+    @media print{.sidebar{display:none}.shell{grid-template-columns:1fr}.section{page-break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="shell">
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <img src="LOGO/trang.png" alt="30Shine Shop" class="sidebar-logo" onerror="this.outerHTML='<span class=logo-m style=font-size:16px>30 SHINE SHOP</span>'">
+  <div class="ver">Quy chuẩn truyền thông v2.0 · 04/2026</div>
+  <div class="doc-label">Tài liệu nội bộ — Khối Thương Mại</div>
+
+  <div class="ng"><div class="ng-t">Tổng Quan</div><div class="nav">
+    <a href="#hero"><span class="td" style="background:var(--shop)"></span> Mục tiêu</a>
+    <a href="#principles"><span class="td" style="background:var(--shop)"></span> Nguyên tắc chung</a>
+  </div></div>
+
+  <div class="ng"><div class="ng-t">30Shine Shop</div><div class="nav">
+    <a href="#shop-brand"><span class="td" style="background:var(--shop)"></span> Tính cách thương hiệu</a>
+    <a href="#shop-color"><span class="td" style="background:var(--shop)"></span> Hệ màu & Logo</a>
+    <a href="#shop-typo"><span class="td" style="background:var(--shop)"></span> Typography</a>
+    <a href="#shop-visual"><span class="td" style="background:var(--shop)"></span> Hình ảnh & Video</a>
+    <a href="#shop-model"><span class="td" style="background:var(--shop)"></span> Tiêu chí chọn mẫu</a>
+    <a href="#shop-voice"><span class="td" style="background:var(--shop)"></span> Giọng nói</a>
+    <a href="#shop-layout"><span class="td" style="background:var(--shop)"></span> Layout & Sáng tạo</a>
+    <a href="#shop-ex"><span class="td" style="background:var(--shop)"></span> Đúng / Sai</a>
+  </div></div>
+
+  <div class="ng"><div class="ng-t">Glänzen</div><div class="nav">
+    <a href="#glz-brand"><span class="td" style="background:var(--glz)"></span> Tính cách & Hệ màu</a>
+    <a href="#glz-visual"><span class="td" style="background:var(--glz)"></span> Hình ảnh & Video</a>
+    <a href="#glz-voice"><span class="td" style="background:var(--glz)"></span> Giọng nói & Mẫu</a>
+    <a href="#glz-ex"><span class="td" style="background:var(--glz)"></span> Ví dụ ấn phẩm</a>
+  </div></div>
+
+  <div class="ng"><div class="ng-t">Drforskin</div><div class="nav">
+    <a href="#dr-brand"><span class="td" style="background:var(--dr)"></span> Tính cách & Hệ màu</a>
+    <a href="#dr-visual"><span class="td" style="background:var(--dr)"></span> Hình ảnh & Video</a>
+    <a href="#dr-voice"><span class="td" style="background:var(--dr)"></span> Giọng nói & Mẫu</a>
+    <a href="#dr-ex"><span class="td" style="background:var(--dr)"></span> Ví dụ ấn phẩm</a>
+  </div></div>
+
+  <div class="ng"><div class="ng-t">Vận Hành</div><div class="nav">
+    <a href="#nn"><span class="td" style="background:var(--no)"></span> Non-Negotiables</a>
+    <a href="#scoring"><span class="td" style="background:var(--warn)"></span> Đánh giá ấn phẩm</a>
+  </div></div>
+
+  <div class="bl">
+    <div class="bl-r"><span class="d" style="background:var(--shop)"></span> 30Shine Shop</div>
+    <div class="bl-r"><span class="d" style="background:var(--glz)"></span> Glänzen</div>
+    <div class="bl-r"><span class="d" style="background:var(--dr)"></span> Drforskin</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="content">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <img src="LOGO/trang.png" alt="" class="hero-logo" onerror="this.outerHTML='<span class=logo-m>30 SHINE SHOP</span>'">
+  <h2>Quy Chuẩn Truyền Thông Thương Hiệu</h2>
+  <p>Tài liệu nội bộ Khối Thương Mại. Thống nhất cách nói, cách thể hiện và kiểm soát ấn phẩm cho 3 nhãn hàng trên cả online lẫn offline. Training bắt buộc cho nhân sự mới, tham chiếu hàng ngày cho team hiện tại.</p>
+  <div class="hero-pills">
+    <span class="pill">3 Thương hiệu</span>
+    <span class="pill">Online + Offline</span>
+    <span class="pill">Tài liệu nội bộ</span>
+  </div>
+</section>
+
+<!-- OVERVIEW 3 BRAND -->
+<section class="section">
+  <div class="sh"><div class="sn" style="background:linear-gradient(135deg,var(--shop),var(--glz))">3</div><h3>Ba thương hiệu — Ba tính cách</h3></div>
+  <p class="sd">Tổng quan nhanh 3 nhãn hàng trong portfolio — cùng hướng tới khách hàng nam Việt nhưng ba vai trò, ba tính cách khác biệt.</p>
+  <div class="g3">
+    <div class="card" style="padding:0;overflow:hidden;border:1px solid var(--line)">
+      <div style="background:#15397F;padding:0;display:flex;align-items:center;justify-content:center;height:130px;overflow:hidden">
+        <img src="LOGO/30shine-shop-logo.jpeg" alt="30Shine Shop" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div style="padding:18px 20px">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--shop);font-weight:700;margin-bottom:6px">30Shine Shop</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Thương mại · Gần gũi · Năng động</div>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.7">Thương hiệu chủ lực — kênh bán lẻ chăm sóc cá nhân cho nam. Giọng điệu "anh em", trực tiếp, mục tiêu bán hàng.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;border:1px solid var(--line)">
+      <div style="background:#A93226;padding:28px 20px;display:flex;align-items:center;justify-content:center;height:130px">
+        <img src="LOGO/glanzen-trang.png" alt="Glänzen" style="max-height:60px;max-width:80%;object-fit:contain" onerror="this.outerHTML='<span class=logo-m style=font-size:28px>GLÄNZEN</span>'">
+      </div>
+      <div style="padding:18px 20px">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--glz);font-weight:700;margin-bottom:6px">Glänzen</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Hiện đại · Có gu · Chuyên nghiệp</div>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.7">Nhãn hàng tạo kiểu & chăm sóc tóc chuyên nghiệp. Tự hào hàng Việt chất lượng cao. Visual urban, có thẩm mỹ.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;border:1px solid var(--line)">
+      <div style="background:#15397F;padding:28px 20px;display:flex;align-items:center;justify-content:center;height:130px">
+        <img src="LOGO/drforskin-logo-trang.png" alt="Drforskin" style="max-height:55px;max-width:85%;object-fit:contain" onerror="this.outerHTML='<span class=logo-m style=font-size:26px>DrforSkin</span>'">
+      </div>
+      <div style="padding:18px 20px">
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dr);font-weight:700;margin-bottom:6px">Drforskin</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Khoa học · Sạch · Tối giản</div>
+        <p style="font-size:12.5px;color:var(--muted);line-height:1.7">Thương hiệu đến từ phòng Lab, nghiên cứu riêng cho làn da đàn ông Việt. Visual khoa học, tối giản.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NGUYÊN TẮC -->
+<section class="section" id="principles">
+  <div class="sh"><div class="sn" style="background:var(--shop)">01</div><h3>Nguyên tắc chung</h3></div>
+  <p class="sd">Ba thương hiệu khác tính cách, nhưng phải đồng nhất về kỷ luật truyền thông.</p>
+  <div class="g4">
+    <div class="pc" style="border-top-color:var(--shop)"><div class="pn">01</div><h4>Đúng vai trò</h4><p>Mỗi brand chỉ nói điều phù hợp vai trò mình. Không "lấn sân" promise nhãn khác.</p></div>
+    <div class="pc" style="border-top-color:var(--shop-70)"><div class="pn">02</div><h4>Đúng giọng nói</h4><p>Copy, visual, script phải phân biệt rõ tính cách riêng từng brand.</p></div>
+    <div class="pc" style="border-top-color:var(--glz)"><div class="pn">03</div><h4>Đúng bối cảnh</h4><p>Online ưu tiên tốc độ, chốt đơn. Offline ưu tiên trải nghiệm, tin cậy.</p></div>
+    <div class="pc" style="border-top-color:var(--dr)"><div class="pn">04</div><h4>Đúng quy trình</h4><p>Mọi ấn phẩm cần qua review trước khi xuất bản.</p></div>
+  </div>
+  <div class="al al-i" style="margin-top:14px"><strong>Quy tắc 3 giây:</strong> Nhân viên Khối Thương Mại nhìn bất kỳ ấn phẩm nào, trong 3 giây phải nhận ra ngay đó là 30Shine Shop, Glänzen hay Drforskin.</div>
+</section>
+
+<!-- ══════════════ 30SHINE SHOP ══════════════ -->
+<div class="stripe"></div>
+<div class="bd" style="background:linear-gradient(135deg,var(--shop),var(--shop-dark))" id="shop-brand">
+  <img src="LOGO/trang.png" alt="" class="bd-logo" onerror="this.outerHTML='<span class=logo-m style=font-size:22px>30 SHINE SHOP</span>'">
+  <p>Thương hiệu chủ lực — Thương mại, gần gũi, nhanh chóng. Mọi ấn phẩm hướng tới bán hàng và tạo trải nghiệm mua sắm dễ dàng cho khách hàng nam.</p>
+  <div class="wm">SHOP</div>
+</div>
+
+<section class="section">
+  <div class="sh"><div class="sn" style="background:var(--shop)">02</div><h3>Tính cách thương hiệu</h3></div>
+  <div class="card">
+    <div class="ct">5 tính cách 30Shine Shop</div>
+    <ul>
+      <li><strong>Gần gũi:</strong> Nói chuyện như anh em, không xa cách</li>
+      <li><strong>Tự tin:</strong> Dám khẳng định sản phẩm tốt, có minh chứng</li>
+      <li><strong>Thực tế:</strong> Tập trung lợi ích cụ thể, không hoa mỹ</li>
+      <li><strong>Năng động:</strong> Nhanh, gọn, bắt trend</li>
+      <li><strong>Đáng tin:</strong> Nền tảng từ hệ thống salon lớn nhất Việt Nam</li>
+    </ul>
+  </div>
+  <div class="sub" style="margin-top:14px">
+    <h4>3 yếu tố nhận diện — thiếu 1 = chưa đạt</h4>
+    <div class="g3">
+      <div class="sb" style="border-left:4px solid var(--shop)"><div class="sl">Yếu tố #1</div><div class="sv" style="color:var(--shop)">Màu xanh #15397F</div><p style="font-size:11px;color:var(--muted);margin-top:2px">Tối thiểu 40% diện tích thiết kế.</p></div>
+      <div class="sb" style="border-left:4px solid var(--shop)"><div class="sl">Yếu tố #2</div><div class="sv">Logo 30Shine Shop</div><p style="font-size:11px;color:var(--muted);margin-top:2px">Bắt buộc trên mọi ấn phẩm.</p></div>
+      <div class="sb" style="border-left:4px solid var(--shop)"><div class="sl">Yếu tố #3</div><div class="sv">Font Gilroy (70%)</div><p style="font-size:11px;color:var(--muted);margin-top:2px">Font sáng tạo tối đa 30%.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HỆ MÀU & LOGO -->
+<section class="section" id="shop-color">
+  <div class="sh"><div class="sn" style="background:var(--shop)">03</div><h3>Hệ màu & Logo</h3></div>
+  <div class="sub">
+    <h4>Bảng màu</h4>
+    <div class="sr">
+      <div class="sw"><div class="sw-c" style="background:#15397F"></div><div class="sw-l">Chủ Đạo</div><div class="sw-h">#15397F · 100%</div></div>
+      <div class="sw"><div class="sw-c" style="background:#4d6a9f"></div><div class="sw-l">70%</div><div class="sw-h">70% đậm</div></div>
+      <div class="sw"><div class="sw-c" style="background:#8a9dbf"></div><div class="sw-l">50%</div><div class="sw-h">50% đậm</div></div>
+      <div class="sw"><div class="sw-c" style="background:#c7d1df"></div><div class="sw-l">30%</div><div class="sw-h">30% đậm</div></div>
+      <div class="sw"><div class="sw-c" style="background:#0D2456"></div><div class="sw-l">Đậm</div><div class="sw-h">#0D2456</div></div>
+    </div>
+  </div>
+  <div class="sub">
+    <h4>Logo 30Shine</h4>
+    <div class="ls">
+      <div class="lb"><div class="lp" style="background:var(--shop)"><img src="LOGO/trang.png" alt="Logo trắng" onerror="this.outerHTML='<span class=logo-m style=font-size:18px>30 SHINE</span>'"></div><div class="lc">Logo Trắng — nền xanh/tối</div></div>
+      <div class="lb"><div class="lp" style="background:#fff"><img src="LOGO/xanh.png" alt="Logo xanh"></div><div class="lc">Logo Xanh — nền trắng/sáng</div></div>
+      <div class="lb"><div class="lp" style="background:#fff"><img src="LOGO/den.png" alt="Logo đen"></div><div class="lc">Logo Đen — in 1 màu</div></div>
+    </div>
+    <div class="lb" style="display:inline-block;width:200px;margin-top:8px"><div class="lp" style="background:#fff"><img src="LOGO/logo-gold.png" alt="Logo gold"></div><div class="lc">Logo Gold — event cao cấp</div></div>
+  </div>
+  <div class="g2" style="margin-top:12px">
+    <div class="card"><div class="ct" style="color:var(--ok)">Quy tắc Logo</div><ul>
+      <li>Safe zone: tối thiểu 1/2 chiều cao logo</li><li>Tối thiểu: 80px (digital), 20mm (in)</li><li>Luôn dùng file gốc (.png, .svg)</li><li>Trên ảnh: có overlay để logo nổi bật</li>
+    </ul></div>
+    <div class="card"><div class="ct" style="color:var(--no)">KHÔNG được</div><ul>
+      <li>Kéo giãn, bóp méo, xoay nghiêng</li><li>Đổi màu ngoài 4 phiên bản</li><li>Thêm đổ bóng, viền, gradient, 3D</li><li>Thu nhỏ dưới kích thước tối thiểu</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section" id="shop-typo">
+  <div class="sh"><div class="sn" style="background:var(--shop)">04</div><h3>Typography</h3></div>
+  <div class="fr">
+    <div class="fc" style="border-left:4px solid var(--shop)"><div class="fl">Font chính — 70%</div><div class="fs">Gilroy Bold / Medium</div><div class="fd">Tiêu đề, body, CTA, giá, banner, social, POSM.</div></div>
+    <div class="fc" style="border-left:4px solid var(--shop-70)"><div class="fl">Font sáng tạo — tối đa 30%</div><div class="fs" style="font-family:Georgia,serif;font-style:italic">Display / Script</div><div class="fd">Headline campaign, slogan event. Cần duyệt trước.</div></div>
+  </div>
+  <div class="rb"><div class="sg" style="width:70%;background:var(--shop)">Gilroy 70%</div><div class="sg" style="width:30%;background:var(--shop-70)">Sáng tạo 30%</div></div>
+</section>
+
+<!-- HÌNH ẢNH & VIDEO 30SHINE -->
+<section class="section" id="shop-visual">
+  <div class="sh"><div class="sn" style="background:var(--shop)">05</div><h3>Hình ảnh & Video — 30Shine Shop</h3></div>
+  <p class="sd">Chất riêng 30Shine Shop: <strong>Thương mại · Gần gũi · Năng động</strong>. Visual phải toát lên tinh thần "điểm mua sắm cho nam giới" — rõ ràng, dễ hiểu, hấp dẫn.</p>
+
+  <div class="sub"><h4>Tiêu chuẩn visual 30Shine Shop</h4>
+    <div class="g3">
+      <div class="sb" style="border-left:4px solid var(--shop);background:#f8fafd"><div class="sl" style="color:var(--shop)">Màu sắc</div><div class="sv">Xanh #15397F chủ đạo</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Thấy ngay từ cái nhìn đầu tiên. Có thể phối màu phụ tùy concept.</p></div>
+      <div class="sb" style="border-left:4px solid var(--shop);background:#f8fafd"><div class="sl" style="color:var(--shop)">Sản phẩm</div><div class="sv">Không quá nhỏ — thấy rõ hình dung</div><p style="font-size:11px;color:var(--muted);margin-top:3px">SP là nhân vật chính, khách nhìn phải nhận diện được. Mẫu, tiệm, lifestyle là optional.</p></div>
+      <div class="sb" style="border-left:4px solid var(--shop);background:#f8fafd"><div class="sl" style="color:var(--shop)">Tinh thần</div><div class="sv">Sống động · Năng động · Rõ ràng</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Tông vui vẻ, khí chất trẻ, không u ám, không nặng nề.</p></div>
+    </div>
+  </div>
+
+  <div class="sub"><h4>3 ngưỡng tối thiểu</h4>
+    <div class="g3">
+      <div class="sb" style="border-left:4px solid #555"><div class="sl">Sản phẩm trong khung</div><div class="sv">Thấy rõ hình dung</div></div>
+      <div class="sb" style="border-left:4px solid #555"><div class="sl">Chất lượng ảnh</div><div class="sv">≥72dpi, sắc nét</div></div>
+      <div class="sb" style="border-left:4px solid #555"><div class="sl">Nhãn sản phẩm</div><div class="sv">Phải đọc được</div></div>
+    </div>
+  </div>
+
+  <div class="al al-s"><strong>Triết lý:</strong> Concept, góc chụp, bố cục, màu sắc hậu kỳ — tự do sáng tạo. Miễn giữ xanh chủ đạo + logo + nhận diện brand.</div>
+
+  <div class="sub" style="margin-top:14px"><h4 style="color:var(--muted);font-size:13px">Thông số kỹ thuật (dùng chung cho cả 3 brand)</h4>
+    <div class="card" style="overflow:hidden"><div style="overflow-x:auto"><table class="dt"><thead><tr><th>Nền tảng</th><th>Kích thước ảnh</th><th>Tỷ lệ</th><th>Dung lượng</th><th>Video</th></tr></thead><tbody>
+      <tr><td>Facebook Post</td><td>1080x1080</td><td>1:1</td><td>≤1MB</td><td>1:1 hoặc 4:5, ≤4GB</td></tr>
+      <tr><td>Story/Reels/TikTok</td><td>1080x1920</td><td>9:16</td><td>≤1MB</td><td>9:16, ≤72MB, MP4/H.264</td></tr>
+      <tr><td>Shopee/Lazada</td><td>1200x1200</td><td>1:1</td><td>≤2MB</td><td>—</td></tr>
+      <tr><td>Banner Website</td><td>1920x600</td><td>~3.2:1</td><td>≤300KB</td><td>—</td></tr>
+      <tr><td>YouTube</td><td>—</td><td>—</td><td>—</td><td>16:9, 1920x1080</td></tr>
+      <tr><td>Livestream</td><td>—</td><td>—</td><td>—</td><td>9:16, 720x1280</td></tr>
+      <tr><td>In ấn</td><td>Theo kích thước thật</td><td>—</td><td>300dpi</td><td>—</td></tr>
+    </tbody></table></div></div>
+  </div>
+</section>
+
+<!-- TIÊU CHÍ MẪU -->
+<section class="section" id="shop-model">
+  <div class="sh"><div class="sn" style="background:var(--shop)">06</div><h3>Tiêu chí chọn Mẫu</h3></div>
+  <p class="sd">Người mẫu/reviewer là "gương mặt" thương hiệu. Chọn đúng → tăng niềm tin và nhận diện.</p>
+  <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start">
+    <div class="ie ie-sq ok" style="margin:0">
+      <div class="is"><span class="st">MẪU THAM CHIẾU</span><img src="LOGO/koc-30shineshop.jpg" alt="Mẫu KOC 30Shine"></div>
+      <div class="id" style="font-size:11.5px">Nam trẻ, gương mặt sáng, nụ cười thiện cảm, tóc gọn gàng — đúng chất "anh em 30Shine".</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="cc" style="border-top:3px solid var(--ok)"><h5 style="color:var(--ok)">Mẫu Review / KOC phù hợp</h5><ul>
+        <li><strong>Giới tính:</strong> Nam, phong cách nam tính, "thẳng"</li>
+        <li><strong>Tuổi:</strong> 20–30 (ngoại hình)</li>
+        <li><strong>Tóc:</strong> Bồng bềnh, dễ tạo kiểu, sạch sẽ</li>
+        <li><strong>Da:</strong> Tương đối sáng, ít khuyết điểm (hậu kỳ nhẹ OK)</li>
+        <li><strong>Gương mặt:</strong> Ưa nhìn, thiện cảm, trẻ trung</li>
+        <li><strong>Biểu cảm:</strong> Tự tin, tự nhiên, không gượng</li>
+        <li><strong>Giọng:</strong> Chân thực, văn nói gần gũi, dễ nghe, tốc độ vừa — như đang tâm sự với bạn</li>
+      </ul></div>
+      <div class="cc" style="border-top:3px solid var(--shop)"><h5>KOL / Influencer</h5><ul>
+        <li><strong>Chất lượng kênh:</strong> Nội dung nhất quán, không rác, không drama</li>
+        <li><strong>Nội dung:</strong> Đã review grooming/lifestyle nam, phù hợp tệp</li>
+        <li><strong>Tone:</strong> Phù hợp giọng 30Shine Shop (gần gũi, thực tế)</li>
+        <li><strong>Kiểm tra seeding ảo:</strong> Comment cùng pattern, tài khoản ảo, spam link</li>
+        <li><strong>Dấu hiệu buff view:</strong> View tăng đột biến bất thường, không tương xứng like/comment</li>
+        <li><strong>Engagement thật:</strong> Like/comment/share hợp lý, tương tác chân thực</li>
+        <li><strong>Không scandal:</strong> Không phát ngôn gây tranh cãi</li>
+        <li><strong>Ưu tiên:</strong> Từng dùng SP/dịch vụ 30Shine thật</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- GIỌNG NÓI -->
+<section class="section" id="shop-voice">
+  <div class="sh"><div class="sn" style="background:var(--shop)">07</div><h3>Giọng nói Thương hiệu</h3></div>
+  <p class="sd">Nói như anh em — chân thực, đời thường. Social dùng ngôn ngữ "nói", bài chính thống thì chân thành nghiêm túc hơn.</p>
+  <div class="g2">
+    <div class="card"><div class="ct">Tính cách giọng nói</div><ul>
+      <li><strong>Chân thực 70%:</strong> "Anh em", "các ông", ngôn ngữ đời thường</li>
+      <li><strong>Tự tin 20%:</strong> Khẳng định, số liệu, bằng chứng</li>
+      <li><strong>Vui vẻ 10%:</strong> Dí dỏm nhẹ, không "lố"</li>
+    </ul></div>
+    <div class="card"><div class="ct">2 chế độ</div><ul>
+      <li><strong>Social/Review/Clip:</strong> Gần gũi tối đa, ngôn ngữ "nói"</li>
+      <li><strong>Thông tin/Đính chính:</strong> Chân thành, tôn trọng, nghiêm túc hơn</li>
+    </ul></div>
+  </div>
+  <div class="card" style="margin-top:12px;background:#f8fafd;border-left:4px solid var(--shop)">
+    <div class="ct">Từ vựng thương hiệu</div>
+    <div class="g2">
+      <div>
+        <p style="font-size:11px;font-weight:700;color:var(--ok);margin-bottom:5px">NÊN DÙNG</p>
+        <p style="font-size:13px">anh em · các ông · bro · combo · deal · giá hời · xịn · chăm sóc · nâng cấp · dễ dùng · salon xài rồi · đã test</p>
+      </div>
+      <div>
+        <p style="font-size:11px;font-weight:700;color:var(--no);margin-bottom:5px">KHÔNG DÙNG</p>
+        <p style="font-size:13px">quý ông · quý khách · thượng lưu · exclusive · premium · luxury · biểu bì · dermis · cam kết 100% · số 1 · bán chạy nhất</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT -->
+<section class="section" id="shop-layout">
+  <div class="sh"><div class="sn" style="background:var(--shop)">08</div><h3>Layout & Sáng tạo</h3></div>
+  <div class="g2">
+    <div class="card"><div class="ct">Ấn phẩm thường xuyên</div><ul><li>Đúng bảng màu, logo, font Gilroy</li><li><strong>Hierarchy cơ bản:</strong> Headline → Sản phẩm → USP bán hàng (điểm nổi bật, lý do nên mua) → Logo</li><li><em>Giá và CTA là optional, tùy loại ấn phẩm (có thể có hoặc không)</em></li></ul></div>
+    <div class="card" style="border-left:4px solid var(--shop)"><div class="ct" style="color:var(--shop)">Campaign — Có không gian sáng tạo</div><ul><li>Font sáng tạo lên đến 50%</li><li>Bổ sung màu phụ theo concept</li><li>Layout phá cách, thử nghiệm mới</li><li><strong>BẮT BUỘC vẫn có: logo + xanh #15397F</strong></li></ul></div>
+  </div>
+</section>
+
+<!-- ĐÚNG / SAI -->
+<section class="section" id="shop-ex">
+  <div class="sh"><div class="sn" style="background:var(--shop)">09</div><h3>Đúng vs. Sai quy chuẩn</h3></div>
+  <div class="ie-grid">
+    <div class="ie ie-sq ok">
+      <div class="is"><span class="st">HỢP LỆ</span><img src="LOGO/30shineshop-social.jpg" alt="30Shine Shop social"></div>
+      <div class="id">Xanh chủ đạo, logo 30Shine rõ ràng, sản phẩm nổi bật, giá + deal rõ, CTA mạnh, font đúng, quà tặng kích thích mua.</div>
+    </div>
+    <div class="ie ie-sq no">
+      <div class="is" style="background:linear-gradient(135deg,#ff6b6b,#ffa500);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px"><span class="st">SAI</span>
+        <div style="font-size:14px;font-family:cursive">~SALE CỰC SỐC~</div>
+        <div style="font-size:28px;font-weight:900;font-family:Impact;margin-top:10px">GIẢM 70%!!!</div>
+        <div style="font-size:12px;margin-top:6px">Mua ngay kẻo hết ạ !!!</div>
+      </div>
+      <div class="id">Không xanh chủ đạo, logo thiếu, font sai quy chuẩn (cursive/Impact), tone "chợ", thiếu hình sản phẩm.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ GLÄNZEN ══════════════ -->
+<div class="stripe"></div>
+<div class="bd" style="background:linear-gradient(135deg,var(--glz),var(--glz-dark))" id="glz-brand">
+  <img src="LOGO/glanzen-trang.png" alt="Glänzen" class="bd-logo" onerror="this.outerHTML='<span class=logo-m style=font-size:22px>GLÄNZEN</span>'">
+  <p>Nhãn hàng tạo kiểu và chăm sóc tóc chuyên nghiệp — Tự hào là hàng Việt chất lượng cao.</p>
+  <div class="wm">GLZ</div>
+</div>
+
+<section class="section">
+  <div class="sh"><div class="sn" style="background:var(--glz)">10</div><h3>Tính cách & Hệ màu</h3></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="ct">5 tính cách Glänzen</div>
+    <ul>
+      <li><strong>Chuyên nghiệp:</strong> Có quy trình, kỹ thuật, kiến thức nền tảng về tóc</li>
+      <li><strong>Hiệu quả:</strong> Kết quả thực tế, before/after rõ ràng</li>
+      <li><strong>Mạnh mẽ:</strong> Visual đỏ ấm, ấn tượng, không "mềm mại"</li>
+      <li><strong>Năng động:</strong> Bắt trend tạo kiểu, luôn cập nhật phong cách mới</li>
+      <li><strong>Đáng tin:</strong> Có xuất xứ giấy tờ uy tín, an tâm sử dụng</li>
+    </ul>
+  </div>
+  <div class="sub"><h4>Bảng màu</h4><p>Đỏ ấm (pha nhẹ cam) là màu chủ đạo. Gold tươi làm điểm nhấn nổi bật. Trắng + xám nhạt hỗ trợ layout sạch.</p>
+    <div class="sr">
+      <div class="sw"><div class="sw-c" style="background:#A93226"></div><div class="sw-l">Đỏ Chủ Đạo</div><div class="sw-h">#A93226</div></div>
+      <div class="sw"><div class="sw-c" style="background:#7B241C"></div><div class="sw-l">Đỏ Đậm</div><div class="sw-h">#7B241C</div></div>
+      <div class="sw"><div class="sw-c" style="background:#CB4335"></div><div class="sw-l">Đỏ Sáng</div><div class="sw-h">#CB4335</div></div>
+      <div class="sw"><div class="sw-c" style="background:#F1C40F"></div><div class="sw-l">Gold Tươi</div><div class="sw-h">Accent nổi bật</div></div>
+      <div class="sw"><div class="sw-c" style="background:#fff;border:1px solid #ddd"></div><div class="sw-l">Trắng</div><div class="sw-h">Nền sáng</div></div>
+      <div class="sw"><div class="sw-c" style="background:#ECEFF1"></div><div class="sw-l">Xám Nhạt</div><div class="sw-h">Nền phụ</div></div>
+      <div class="sw"><div class="sw-c" style="background:#1A1A1A"></div><div class="sw-l">Đen</div><div class="sw-h">Text chính</div></div>
+    </div>
+  </div>
+  <div class="sub"><h4>Logo Glänzen</h4>
+    <div class="ls">
+      <div class="lb"><div class="lp" style="background:#A93226"><img src="LOGO/glanzen-trang.png" alt=""></div><div class="lc">Trắng — nền đỏ/tối</div></div>
+      <div class="lb"><div class="lp" style="background:#fff"><img src="LOGO/glanzen-den.png" alt=""></div><div class="lc">Đen — nền sáng</div></div>
+      <div class="lb"><div class="lp" style="background:#1A1A1A"><img src="LOGO/glanzen-trang.png" alt=""></div><div class="lc">Trắng — nền đen</div></div>
+    </div>
+  </div>
+  <div class="sub"><h4>Typography Glänzen</h4>
+    <div class="fr">
+      <div class="fc" style="border-left:4px solid var(--glz)"><div class="fl">Font chính — 70%</div><div class="fs" style="font-family:'Inter',sans-serif;letter-spacing:-0.5px">Montserrat Bold / ExtraBold</div><div class="fd">Headline, tên SP, body text, POSM. Font sans-serif đậm, mạnh mẽ — phù hợp chất brand tạo kiểu tóc.</div></div>
+      <div class="fc" style="border-left:4px solid var(--glz-gold)"><div class="fl">Font sáng tạo — tối đa 30%</div><div class="fs" style="font-family:Georgia,serif;font-style:italic">Serif / Display</div><div class="fd">Slogan campaign, accent trên packaging (như text trên chai wax). Cần duyệt trước.</div></div>
+    </div>
+    <div class="rb"><div class="sg" style="width:70%;background:var(--glz)">Montserrat 70%</div><div class="sg" style="width:30%;background:var(--glz-gold)">Sáng tạo 30%</div></div>
+  </div>
+</section>
+
+<!-- HÌNH ẢNH GLANZEN -->
+<section class="section" id="glz-visual">
+  <div class="sh"><div class="sn" style="background:var(--glz)">11</div><h3>Hình ảnh & Video — Glänzen</h3></div>
+  <p class="sd">Chất riêng Glänzen: <strong>Hiện đại · Có gu · Chuyên nghiệp</strong>. Visual phải toát lên gu thẩm mỹ, phong cách urban, không nhạt nhòa.</p>
+  <div class="sub"><h4>Tiêu chuẩn visual Glänzen</h4>
+    <div class="g3">
+      <div class="sb" style="border-left:4px solid var(--glz);background:#fdf6f5"><div class="sl" style="color:var(--glz)">Màu sắc</div><div class="sv">Đỏ #A93226 ấm chủ đạo</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Đỏ pha nhẹ cam — ấm, mạnh, không chói. Gold accent hỗ trợ.</p></div>
+      <div class="sb" style="border-left:4px solid var(--glz);background:#fdf6f5"><div class="sl" style="color:var(--glz)">Phong cách</div><div class="sv">Hiện đại · Có gu</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Thẩm mỹ urban, phong cách định hình. Studio hoặc lifestyle có gu.</p></div>
+      <div class="sb" style="border-left:4px solid var(--glz);background:#fdf6f5"><div class="sl" style="color:var(--glz)">Trọng tâm</div><div class="sv">Sản phẩm + Tóc/Phong cách</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Ưu tiên close-up tóc, before/after. Khi có mẫu → mẫu phải có tóc tạo kiểu đẹp.</p></div>
+    </div>
+  </div>
+  <div class="al al-s"><strong>Triết lý:</strong> Glänzen không "nhạt" — mọi ấn phẩm phải có gu, có thần. Tránh bố cục đơn giản quá mức, tránh lifestyle quá đời thường.</div>
+</section>
+
+<!-- GIỌNG NÓI & MẪU GLANZEN -->
+<section class="section" id="glz-voice">
+  <div class="sh"><div class="sn" style="background:var(--glz)">12</div><h3>Giọng nói & Tiêu chí mẫu</h3></div>
+  <div class="sub"><h4>Giọng nói</h4>
+    <p>Tương tự 30Shine Shop — cùng tệp khách hàng nam Việt. Vẫn là người bạn đồng hành thân thiện, nhiệt tình chia sẻ kiến thức tạo kiểu tóc. Xưng hô "anh em", chân thực, gần gũi.</p>
+    <div class="vr">
+      <div class="vb g"><span class="vt">Đúng — Xưng "anh em"</span>"Anh em hay than tóc mỏng khó vào form — thử Glänzen Booster đi, X2 hàm lượng muối biển nên tóc phồng tự nhiên, giữ nếp 12 tiếng mà không bết."</div>
+      <div class="vb b"><span class="vt">Sai — Hoa mỹ, xa lạ</span>"Dành cho những quý ông hiện đại, Glänzen mang đến bí quyết tạo kiểu đỉnh cao — nâng tầm phong thái, khẳng định bản lĩnh của phái mạnh."</div>
+    </div>
+  </div>
+  <div class="sub"><h4>Tiêu chí mẫu Glänzen</h4>
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start">
+      <div class="ie ie-sq ok" style="margin:0">
+        <div class="is"><span class="st">MẪU THAM CHIẾU</span><img src="LOGO/koc-glanzen.jpg" alt="Mẫu KOC Glänzen"></div>
+        <div class="id" style="font-size:11.5px">Tóc tạo kiểu có gu (nhuộm, styled), phụ kiện (kính), phong cách urban-modern — đúng chất "có gu" của Glänzen.</div>
+      </div>
+      <div class="cc" style="border-top:3px solid var(--ok)"><h5 style="color:var(--ok)">Mẫu phù hợp</h5><ul>
+        <li>Nam 20–32, phong cách urban, có gu thẩm mỹ</li>
+        <li><strong>Tóc bắt buộc tạo kiểu đẹp</strong> — có thể nhuộm, cắt lạ, miễn hợp phong cách</li>
+        <li>Phụ kiện (kính, khuyên tai...) được khuyến khích nếu hợp concept</li>
+        <li>Biểu cảm tự tin, cool, có thần — không nhạt</li>
+        <li>Gương mặt ưa nhìn, thiện cảm hoặc cá tính</li>
+        <li>Bối cảnh: studio, salon, lifestyle urban có gu</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- VÍ DỤ GLANZEN -->
+<section class="section" id="glz-ex">
+  <div class="sh"><div class="sn" style="background:var(--glz)">13</div><h3>Ví dụ ấn phẩm Glänzen</h3></div>
+  <p class="sd">Ấn phẩm social hợp lệ — đúng màu đỏ chủ đạo, sản phẩm rõ ràng, mẫu nam tóc đẹp, thông tin hữu ích.</p>
+  <div class="ie-grid">
+    <div class="ie ie-sq ok">
+      <div class="is"><span class="st">HỢP LỆ</span><img src="LOGO/glanzen-social.jpg" alt="Glänzen social post"></div>
+      <div class="id">Đúng tông đỏ chủ đạo, sản phẩm nổi bật, mẫu nam tóc đẹp, thông tin thành phần rõ ràng (Muối Biển, Keratin, Vitamin B), logo Glänzen hiện diện mạnh.</div>
+    </div>
+    <div class="ie ie-sq no">
+      <div class="is" style="background:linear-gradient(135deg,#00BFFF,#87CEEB);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px">
+        <span class="st">SAI</span>
+        <div style="font-size:9px;opacity:.4">glanzen</div>
+        <div style="font-size:24px;font-weight:900;margin-top:14px">SALE 50%!!!</div>
+        <div style="font-size:14px;margin-top:6px">MUA 2 TẶNG 1</div>
+        <div style="font-size:11px;margin-top:12px;background:#fff;color:#00BFFF;padding:4px 12px;border-radius:20px">CHỐT ĐƠN NGAY</div>
+      </div>
+      <div class="id">Sai màu (xanh dương thay vì đỏ), giọng bán hàng ép, logo quá nhỏ, không có mẫu/sản phẩm — mất hoàn toàn chất Glänzen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ DRFORSKIN ══════════════ -->
+<div class="stripe"></div>
+<div class="bd" style="background:linear-gradient(135deg,var(--dr),var(--dr-dark))" id="dr-brand">
+  <img src="LOGO/drforskin-logo-trang.png" alt="Drforskin" class="bd-logo" onerror="this.outerHTML='<span class=logo-m style=font-size:22px>DrforSkin</span>'">
+  <p>Thương hiệu đến từ phòng Lab — được nghiên cứu riêng cho làn da đàn ông Việt. Công thức khoa học, thành phần minh bạch, an tâm sử dụng hàng ngày.</p>
+  <div class="wm">DFS</div>
+</div>
+
+<section class="section">
+  <div class="sh"><div class="sn" style="background:var(--dr)">13</div><h3>Tính cách & Hệ màu</h3></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="ct">5 tính cách Drforskin</div>
+    <ul>
+      <li><strong>Khoa học:</strong> Nói có cơ sở, thành phần rõ ràng, giải thích được cơ chế</li>
+      <li><strong>Nhẹ nhàng:</strong> Không hype, không gây hoảng, xoa dịu lo lắng về da</li>
+      <li><strong>Thân thiện:</strong> Vẫn gần gũi, xưng "anh — em", không khô khan</li>
+      <li><strong>Minh bạch:</strong> Thành phần, công dụng — trình bày rõ ràng, dễ hiểu</li>
+      <li><strong>Uy tín:</strong> Được phát triển với công nghệ Hàn Quốc, đáng tin cậy</li>
+    </ul>
+  </div>
+  <div class="sub"><h4>Bảng màu</h4><p>Cùng hệ xanh 30Shine nhưng dùng sáng hơn, nhiều whitespace hơn → cảm giác clean, khoa học.</p>
+    <div class="sr">
+      <div class="sw"><div class="sw-c" style="background:#15397F"></div><div class="sw-l">Xanh</div><div class="sw-h">#15397F</div></div>
+      <div class="sw"><div class="sw-c" style="background:#8a9dbf"></div><div class="sw-l">50%</div><div class="sw-h">50%</div></div>
+      <div class="sw"><div class="sw-c" style="background:#c7d1df"></div><div class="sw-l">30%</div><div class="sw-h">30%</div></div>
+      <div class="sw"><div class="sw-c" style="background:#edf1f8"></div><div class="sw-l">Nền nhạt</div><div class="sw-h">#EDF1F8</div></div>
+      <div class="sw"><div class="sw-c" style="background:#fff;border:1px solid #ddd"></div><div class="sw-l">Trắng</div><div class="sw-h">#FFF</div></div>
+    </div>
+    <div class="al al-i"><strong>Phân biệt với 30Shine Shop:</strong> Cùng tông xanh nhưng Drforskin: nhiều whitespace hơn, layout sạch hơn, ít yếu tố hơn, không CTA bán hàng mạnh, ưu tiên thông tin thành phần.</div>
+  </div>
+  <div class="sub"><h4>Logo & Font</h4>
+    <div class="ls" style="grid-template-columns:1fr 1fr">
+      <div class="lb"><div class="lp" style="background:#fff"><img src="LOGO/drforskin-logo-den.png" alt="" style="max-height:45px;max-width:75%;object-fit:contain"></div><div class="lc">Logo Đen — nền sáng</div></div>
+      <div class="lb"><div class="lp" style="background:var(--dr)"><img src="LOGO/drforskin-logo-trang.png" alt="" style="max-height:45px;max-width:75%;object-fit:contain" onerror="this.outerHTML='<span class=logo-m style=font-size:16px>DrforSkin</span>'"></div><div class="lc">Logo Trắng — nền tối</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:8px"><strong>Font:</strong> Gilroy — giống 30Shine Shop (70% chính / 30% sáng tạo).</p>
+  </div>
+</section>
+
+<!-- HÌNH ẢNH DRFORSKIN -->
+<section class="section" id="dr-visual">
+  <div class="sh"><div class="sn" style="background:var(--dr)">14</div><h3>Hình ảnh & Video — Drforskin</h3></div>
+  <p class="sd">Chất riêng Drforskin: <strong>Khoa học · Sạch · Tối giản</strong>. Visual phải toát lên concept phòng lab nghiên cứu, tạo cảm giác tin cậy cho khách.</p>
+  <div class="sub"><h4>Tiêu chuẩn visual Drforskin</h4>
+    <div class="g3">
+      <div class="sb" style="border-left:4px solid var(--dr);background:#f8fafd"><div class="sl" style="color:var(--dr)">Màu sắc</div><div class="sv">Xanh sáng + Trắng</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Tông xanh clean + nhiều whitespace. Không đỏ/cam chói, không sale shock.</p></div>
+      <div class="sb" style="border-left:4px solid var(--dr);background:#f8fafd"><div class="sl" style="color:var(--dr)">Concept</div><div class="sv">Phòng lab · Nghiên cứu</div><p style="font-size:11px;color:var(--muted);margin-top:3px">Bubble, giọt nước, texture, ingredient callout (PHA, AC-NET...) tạo cảm giác khoa học.</p></div>
+      <div class="sb" style="border-left:4px solid var(--dr);background:#f8fafd"><div class="sl" style="color:var(--dr)">Bố cục</div><div class="sv">Tối giản · Ít chi tiết</div><p style="font-size:11px;color:var(--muted);margin-top:3px">SP là trung tâm, whitespace ≥40%, không rối. Mọi thứ phục vụ sự tin cậy.</p></div>
+    </div>
+  </div>
+  <div class="al al-s"><strong>Triết lý:</strong> Nhìn ấn phẩm Drforskin là khách phải thấy "đáng tin". Sạch, khoa học, không cầu kỳ, không ồn ào.</div>
+</section>
+
+<!-- GIỌNG NÓI DRFORSKIN -->
+<section class="section" id="dr-voice">
+  <div class="sh"><div class="sn" style="background:var(--dr)">15</div><h3>Giọng nói & Tiêu chí mẫu</h3></div>
+  <div class="sub"><h4>Giọng nói</h4>
+    <p>Lý thuyết nhưng không khô khan — biến cơ chế khoa học thành hình ảnh gần gũi, dễ hiểu. Vẫn thân thiện, xưng "anh — em", nhưng có chiều sâu kiến thức.</p>
+    <div class="vr">
+      <div class="vb g"><span class="vt">Đúng — Khoa học hình tượng hóa</span>"Than hoạt tính trong Drforskin Foam Cleanser giống như nam châm — hút sạch dầu thừa, bụi bẩn trong lỗ chân lông. Rửa xong anh em sẽ cảm nhận ngay sự mịn màng, da nhẹ tênh, không còn bóng nhờn."</div>
+      <div class="vb b"><span class="vt">Sai — Cam kết quá mức</span>"CAM KẾT TRỊ MỤN 100% SAU 3 NGÀY! Serum thần thánh, dùng là hết mụn ngay! Không hiệu quả hoàn tiền!!!"</div>
+    </div>
+    <div class="vr">
+      <div class="vb g"><span class="vt">Đúng — Giải thích đơn giản</span>"PHA nhẹ hơn AHA — tẩy tế bào chết mà da vẫn mềm, không khô rát. Anh em dùng tuần 2-3 lần thôi, da sẽ dần sáng và mịn hơn."</div>
+      <div class="vb b"><span class="vt">Sai — Giọng quá "chợ"</span>"Ê bro mụn ghê quá hả, xài cái này đi bán chạy kinh khủng luôn, giá rẻ bèo mà chất lượng xịn xò! Chốt đơn nhanh!!!"</div>
+    </div>
+  </div>
+  <div class="sub"><h4>Tiêu chí mẫu Drforskin</h4>
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start">
+      <div class="ie ie-sq ok" style="margin:0">
+        <div class="is"><span class="st">MẪU THAM CHIẾU</span><img src="LOGO/koc-drforskin.jpg" alt="Mẫu KOC Drforskin"></div>
+        <div class="id" style="font-size:11.5px">Nam trẻ, da sáng tự nhiên, gương mặt thiện cảm, biểu cảm nhẹ nhàng — đúng chất "khách hàng thật" của Drforskin.</div>
+      </div>
+      <div class="cc" style="border-top:3px solid var(--ok)"><h5 style="color:var(--ok)">Mẫu phù hợp</h5><ul>
+        <li>Nam 22–30, da tương đối sáng, clean look</li>
+        <li>Biểu cảm nhẹ nhàng, bình tĩnh, tạo thiện cảm</li>
+        <li><strong>Trang phục theo cảnh quay:</strong> Áo màu tôn da sáng khi quay cảnh <em>after</em>, áo màu tôn da tối khi quay cảnh <em>before</em> — làm nổi bật sự khác biệt của da</li>
+        <li>Close-up da thật, ít filter → chân thực, đáng tin</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- VÍ DỤ DRFORSKIN -->
+<section class="section" id="dr-ex">
+  <div class="sh"><div class="sn" style="background:var(--dr)">16</div><h3>Ví dụ ấn phẩm Drforskin</h3></div>
+  <p class="sd">Ấn phẩm hợp lệ — nhìn là thấy ngay concept khoa học, phòng lab nghiên cứu. Sạch sẽ, tối giản, không quá nhiều chi tiết. Thành phần và công dụng rõ ràng.</p>
+  <div class="ie-grid">
+    <div class="ie ie-sq ok">
+      <div class="is"><span class="st">HỢP LỆ</span><img src="LOGO/drforskin-social.jpg" alt="Drforskin social post"></div>
+      <div class="id">Tông xanh nhạt clean, concept phòng lab rõ (bubble, PHA, AC-NET icon), sản phẩm là trung tâm, công dụng được liệt kê ngắn gọn, whitespace nhiều, không sale shock.</div>
+    </div>
+    <div class="ie ie-sq no">
+      <div class="is" style="background:linear-gradient(135deg,#FF4444,#FF6B6B);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px">
+        <span class="st">SAI</span>
+        <div style="font-size:24px;font-weight:900">TRỊ MỤN 100%</div>
+        <div style="font-size:14px;margin-top:6px">CHỈ 3 NGÀY!!!</div>
+        <div style="background:#fff;color:#FF4444;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-top:14px">MUA 1 TẶNG 1</div>
+      </div>
+      <div class="id">Nền đỏ chói, claim quá mức ("100%", "3 ngày"), giọng sale shock, không có yếu tố khoa học — phá vỡ hoàn toàn brand Drforskin.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px;border-left:4px solid var(--dr);background:#f8fafd">
+    <div class="ct" style="color:var(--dr)">Checklist visual Drforskin</div>
+    <ul>
+      <li>Có yếu tố khoa học: bubble, texture water, ingredient callout (PHA, AC-NET, BSASM...)</li>
+      <li>Whitespace ≥40% diện tích — cảm giác "phòng lab", không rối</li>
+      <li>Nền sáng (trắng, xanh nhạt), thêm hình ảnh thành phần liên tưởng có trong sản phẩm (ví dụ: tinh thể than hoạt tính cho foam cleanser, giọt serum cho sản phẩm dưỡng...)</li>
+      <li>Sản phẩm là trung tâm, nhãn rõ, không bị che</li>
+      <li>Thông tin công dụng liệt kê ngắn gọn, có icon</li>
+    </ul>
+  </div>
+
+  <div class="al al-d"><strong>CẤM TUYỆT ĐỐI:</strong> "cam kết", "trị dứt điểm", "100%", "thần thánh". Thay bằng: "hỗ trợ", "giúp cải thiện", "giảm thiểu", "dần dần".</div>
+</section>
+
+<!-- ══════════════ NON-NEGOTIABLES ══════════════ -->
+<div class="stripe"></div>
+<div class="mini-hero" id="nn"><h3>Non-Negotiables — Vi phạm = REJECT</h3><p>Bắt buộc cho TẤT CẢ kênh, TẤT CẢ brand. Không ngoại lệ.</p></div>
+<section class="section">
+  <div class="card" style="border:2px solid var(--no);border-radius:14px;overflow:hidden">
+    <table class="dt nn" style="width:100%"><thead><tr><th style="width:36px">#</th><th style="width:180px">Điều khoản</th><th>Mô tả — Vi phạm = REJECT</th></tr></thead><tbody>
+      <tr><td><span class="nn-n">1</span></td><td><strong>Không nói "rẻ"</strong></td><td>Không dùng: <span class="nn-k">rẻ</span> <span class="nn-k">giá rẻ</span> <span class="nn-k">siêu rẻ</span>. Thay: xứng đáng, hợp lý, tiết kiệm.</td></tr>
+      <tr><td><span class="nn-n">2</span></td><td><strong>Không chê đối thủ</strong></td><td>Không so sánh tiêu cực. Tập trung giá trị bản thân.</td></tr>
+      <tr><td><span class="nn-n">3</span></td><td><strong>Không dùng từ gây hiểu lầm</strong></td><td>CẤM: <span class="nn-k">trị</span> <span class="nn-k">điều trị</span> <span class="nn-k">tận gốc</span> <span class="nn-k">hết sạch trong X ngày</span> <span class="nn-k">nhất</span> <span class="nn-k">số 1</span> khi chưa chứng minh.</td></tr>
+      <tr><td><span class="nn-n">4</span></td><td><strong>Không hứa quá</strong></td><td>Không: <span class="nn-k">100% đẹp</span> <span class="nn-k">đảm bảo</span> <span class="nn-k">chắc chắn</span>. Dùng: "hỗ trợ", "giúp cải thiện".</td></tr>
+      <tr><td><span class="nn-n">5</span></td><td><strong>Logo đúng chuẩn</strong></td><td>Đúng màu, tỷ lệ, không biến dạng. Đặc biệt kiểm tra trên Facebook.</td></tr>
+      <tr><td><span class="nn-n">6</span></td><td><strong>Tone of Voice đúng brand</strong></td><td>Thấu hiểu — Chân thực — Vui vẻ. Không trịch thượng, không quá casual sai brand.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="al al-d" style="margin-top:14px"><strong>Chính sách nền tảng:</strong> Mọi ấn phẩm phải tuân thủ chính sách quảng cáo Facebook, TikTok, Shopee, Lazada. Vi phạm = bay tài khoản, mất tiền, mất pixel.</div>
+  <div class="g2" style="margin-top:12px">
+    <div class="card" style="border-left:4px solid var(--no)"><div class="ct" style="color:var(--no)">Facebook / Meta</div><ul>
+      <li>Claim sức khỏe chưa chứng minh</li><li>Before/After phóng đại</li><li>Targeting nhạy cảm</li><li>Ảnh text >20%</li><li>Engagement bait</li>
+    </ul></div>
+    <div class="card" style="border-left:4px solid var(--no)"><div class="ct" style="color:var(--no)">TikTok / Shopee / Lazada</div><ul>
+      <li>"Số 1", "tốt nhất" không data</li><li>Giá gốc ảo, discount giả</li><li>Hình không đúng SP thực tế</li><li>Review giả, fake testimonial</li><li>Nhạc có bản quyền trong ads</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ══════════════ PHƯƠNG PHÁP ĐÁNH GIÁ ══════════════ -->
+<section class="section" id="scoring">
+  <div class="sh"><div class="sn" style="background:linear-gradient(135deg,#1a1a2e,#2d1b3d)">★</div><h3>Phương pháp đánh giá ấn phẩm</h3></div>
+  <p class="sd">Thang 10 điểm — công cụ review nhanh: duyệt / chỉnh sửa / làm lại.</p>
+  <div class="card" style="overflow:hidden;margin-bottom:14px"><table class="dt"><thead><tr><th>STT</th><th>Tiêu chí</th><th style="width:60px">Điểm</th><th>Mô tả</th></tr></thead><tbody>
+    <tr><td>1</td><td><strong>Đúng brand</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.5</td><td>Đúng màu, logo, font</td></tr>
+    <tr><td>2</td><td><strong>Đúng giọng nói</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.5</td><td>Tone phù hợp tính cách brand</td></tr>
+    <tr><td>3</td><td><strong>Thông điệp rõ</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.5</td><td>1 ý lớn, visual+caption+CTA đồng nhất</td></tr>
+    <tr><td>4</td><td><strong>Hình ảnh đạt chuẩn</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.5</td><td>Đủ phân giải, mẫu phù hợp</td></tr>
+    <tr><td>5</td><td><strong>Logo đúng</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.0</td><td>Đúng phiên bản, safe zone, kích thước</td></tr>
+    <tr><td>6</td><td><strong>Không vi phạm NN</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.0</td><td>Không chứa điều khoản cấm</td></tr>
+    <tr><td>7</td><td><strong>Thông tin chính xác</strong></td><td style="text-align:center;font-weight:700;color:var(--shop)">1.0</td><td>Tên SP, giá, link — đã kiểm tra</td></tr>
+    <tr style="background:#f8f9fa"><td></td><td><strong>TỔNG</strong></td><td style="text-align:center;font-weight:900;color:var(--shop);font-size:15px">10</td><td></td></tr>
+  </tbody></table></div>
+  <div class="scg">
+    <div class="sc gr"><div class="sr2">8—10</div><div class="sl2" style="color:var(--ok)">DUYỆT</div><div class="sd2">Đạt chuẩn. Xuất bản ngay.</div></div>
+    <div class="sc ye"><div class="sr2">5—7</div><div class="sl2" style="color:var(--warn)">CHỈNH SỬA</div><div class="sd2">Sửa theo ghi chú → review lại.</div></div>
+    <div class="sc re"><div class="sr2">0—4</div><div class="sl2" style="color:var(--no)">LÀM LẠI</div><div class="sd2">Brief lại từ đầu.</div></div>
+  </div>
+  <div class="al al-d"><strong>Đặc biệt:</strong> Vi phạm Non-Negotiables → tự động "LÀM LẠI" bất kể tổng điểm.</div>
+</section>
+
+<!-- FOOTER -->
+<div class="stripe"></div>
+<div class="footer">
+  <img src="LOGO/trang.png" alt="" class="fl2" style="filter:none" onerror="this.outerHTML='<span class=logo-m style=font-size:14px>30 SHINE SHOP</span>'">
+  <h4 style="font-size:16px;margin-bottom:6px">Quy Chuẩn Truyền Thông Thương Hiệu</h4>
+  <p>Tài liệu nội bộ Khối Thương Mại. Mọi cập nhật cần thông qua đồng thuận của Marketing Team khối Thương Mại.</p>
+  <div class="fb">
+    <div class="fbc"><img src="LOGO/trang.png" alt="" style="filter:none" onerror="this.outerHTML='<span style=color:#fff;font-size:11px;font-weight:700>30Shine Shop</span>'"><p>Gần gũi · Xanh #15397F · Gilroy</p></div>
+    <div class="fbc"><img src="LOGO/glanzen-trang.png" alt="" onerror="this.outerHTML='<span style=color:#fff;font-size:11px;font-weight:700>GLÄNZEN</span>'"><p>Chuyên nghiệp · Đỏ #A93226 · Montserrat</p></div>
+    <div class="fbc"><img src="LOGO/drforskin-logo-trang.png" alt="" onerror="this.outerHTML='<span style=color:#fff;font-size:11px;font-weight:700>DrforSkin</span>'"><p>Khoa học · Xanh clean · Gilroy</p></div>
+  </div>
+  <p style="margin-top:16px;font-size:10px;opacity:.3">v2.0 · 04/2026 · Team Marketing 30Shine</p>
+</div>
+
+</main>
+</div>
+</body>
+</html>
